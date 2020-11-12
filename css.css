@@ -1,0 +1,134 @@
+@-moz-viewport { width: device-width; scale: 1; }
+@-ms-viewport { width: device-width; scale: 1; }
+@-o-viewport { width: device-width; scale: 1; }
+@-webkit-viewport { width: device-width; scale: 1; }
+@viewport { width: device-width; scale: 1; }
+-webkit-tap-highlight-color:transparent;
+
+html,
+body{
+    width: 100% !important;
+    min-height: 0px !important;
+    min-width: 0px;
+}
+
+:root {
+  /* This is the primary color for the buttons and the progress bar. 
+  This is also the secondary color for the skip button. */
+  --main-color: #64969E;
+
+  /* This is the secondary color for all of the buttons. */
+  --secondary-color: white; 
+
+  /* This is the color for the main survey box. */
+  --bg-outer-color: #F1F1F1;
+  
+  /* This is the color for the inner survey box that 
+  contains the response scale. */
+  --bg-inner-color: #d0dcdd;
+
+}
+
+.wrapper {
+	width: 100% !important;
+}
+.container{
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+}
+
+.container-web{
+    margin-top: 50px;
+}
+
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    vertical-align: top;
+    overflow: hidden;
+}
+
+/* Check to make sure that this isn't redundant. */
+.svg-content {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Double check that removing the .btn-reponse.active isn't bad... */
+.btn-response {
+  background-color: var(--main-color) !important;
+  border-width: 0px;
+  color: var(--secondary-color) !important;
+  outline: none !important;
+  margin: 4px 2px;
+  min-height:30px;
+  width:225px;
+  border-radius: 4px;
+  text-align: left;
+}
+
+.btn-response:focus, .btn-response:active {
+  background-color: var(--secondary-color)!important;
+  color: var(--main-color)!important;
+}
+
+.skip-btn {
+  border: 0px;
+  border-radius: 4px;
+  outline:none!important;
+  background-color: var(--bg-outer-color)!important;
+  color: var(--main-color)!important;
+  font-size: 10px;
+}
+
+.skip-btn:focus, .skip-btn:active {
+  background-color: var(--main-color)!important;
+  color: var(--secondary-color)!important;
+}
+
+.skip-bar {
+  background-color: var(--bg-outer-color)!important;
+	padding: 0px;
+	height: 25px;
+}
+
+.bg-outer {
+  background-color: var(--bg-outer-color)!important;
+}
+
+.bg-inner {
+  background-color: var(--bg-inner-color)!important;
+}
+
+.progress-bar {
+  background-color: var(--main-color)!important;
+}
+
+.progress {
+  background-color: white!important; 
+}
+
+
+/*---------------------------------------------------------*/
+/* Only used for mobile. */
+
+.toggle-btn-mobile, .toggle-btn-mobile.active {
+  border: 0px;
+  background-color: var(--bg-outer-color)!important;
+  color: var(--main-color)!important;
+  font-size: 12px;
+  outline:none!important;
+  padding: 0px 4px 0px 0px;
+}
+
+/*-----------------------------------------------------------*/
+/* This class is only used for the web version of the surveys.
+   DO NOT ATTEMPT TO USE FOR MOBILE. */
+.btn-hover {
+  background-color: var(--secondary-color)!important;
+  color: var(--main-color)!important;
+}
+/*----------------------------------------------------------*/
