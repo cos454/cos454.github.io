@@ -19,8 +19,6 @@ var training_y = [];
 
 var sampled = {};
 
-
-
 var n = 0;
 
 while (n < 4) {
@@ -94,36 +92,16 @@ function page1() {
 
 	$("#taskDetails").animate({opacity: "1"}, "fast"); // Resets the opacity after everything on the page has been set up.
 
-	// If the other checkbox is checked, then its associated text input is activated; otherwise, it's deactivated...
-	$("#checkOther").on('change', function(){
-		if ($(this).prop("checked")) {
-			$("#textOther").removeAttr("disabled");
-		}
-		else {
-			$("#textOther").val("");
-			$("#textOther").attr("disabled", "true");
-		}
-	});
+	let text = $("#text1").val();
 
 	// Whenever the "next" button is pressed... 
 	$("#next").on("click", function () {
 		// If the other checkbox is checked, makes sure that its associated text input has been filled out.
-		if ( $("#checkOther").is(":checked") && $("#textOther").val() == "") {
-			error("Hmm, it looks like you forgot to enter text for the \"Other\" checkbox.")
-			return;
-		}
-		else {
 			// For each of the checkboxes, if the checkbox is checked, then pushes its values to the results array.
 			// Otherwise, pushes an empty string to the results array.
-			$('input[name="checks"]').each(function(i, v) {
-				var current = ($(v).is(":checked"))? $(v).val() : "";
-				results.push({"checkboxes2": current});
-			});
 
 			// Pushes the text from the textfield underneath the other checkbox
-			results.push( {"other_text": $("#textOther").val()} );
-
-			console.log(results);
+			results.push(text);
 
 			$("#next").off("click");
 			$("#taskDetails").animate({opacity: "0"}, "fast"); // Reduces the opacity before going to next page
@@ -132,7 +110,7 @@ function page1() {
 				updateProgress(0); //Updates the progress bar before going to the next page...
 				page2();
 			},350);
-		}
+		
 	}); 
 };
 
@@ -187,7 +165,7 @@ function page2() {
 
 		// Records value and push to results array.
 		let rating = this.value;
-		results.push({"buttons": parseInt(rating)});
+		results.push(parseInt(rating));
 
 		$("#taskDetails button").off("click");
 		currentItem++;
@@ -213,8 +191,6 @@ function page2() {
 		}
 	}); 
 };
-
-
 
 
 
@@ -532,6 +508,29 @@ function endSurvey(){
 	"</div>";
 	
 	$("#root").html(root_html);
+
+	var data = JSON.stringify({
+	  "x": "demo" + training_x[0] + ", " + training_x[1] + ", " + training_x[2] + ", " + training_x[3],
+	  "y": training_y[0] + ", " + training_y[1] + ", " + training_y[2] + ", " + training_y[3],
+	  "results": results[1] + ", " + results[2] + ", " + results[3] + ", " + results[4] + ", " + results[5] + ", " + results[6] + ", " + results[7] + ", " + results[8],
+	  "reason": results[0]
+	});
+
+	var xhr = new XMLHttpRequest();
+	xhr.withCredentials = false;
+
+	xhr.addEventListener("readystatechange", function () {
+	  if (this.readyState === 4) {
+	    console.log(this.responseText);
+	  }
+	});
+
+	xhr.open("POST", "https://cos454-e390.restdb.io/rest/results");
+	xhr.setRequestHeader("content-type", "application/json");
+	xhr.setRequestHeader("x-apikey", "5fadd27e863959728838532d");
+	xhr.setRequestHeader("cache-control", "no-cache");
+
+	xhr.send(data);
 
 	//--------------------------------------------------------------
 
