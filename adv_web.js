@@ -72,7 +72,7 @@ var collapse_data = `
 function page1() {
 	document.activeElement.blur();
 
-	let instructions = "Please take a look at the training data above and write down a hypothesis about the relationship between these objects and the blicket detector."  
+	let instructions = "Please take a look at the training data below and write down a hypothesis about the relationship between these objects and the blicket detector."  
 
 	let task =
 		`<div class="row p-2">
