@@ -33,12 +33,6 @@ while (n < 4) {
 }
 
 
-
-console.log(images);
-
-console.log(training_x);
-console.log(training_y);
-
 var training_data = `
 					<h2>Training Data</h2>
 					<div class="row p-1">
@@ -92,14 +86,14 @@ function page1() {
 
 	$("#taskDetails").animate({opacity: "1"}, "fast"); // Resets the opacity after everything on the page has been set up.
 
-	let text = $("#text1").val();
+	
 
 	// Whenever the "next" button is pressed... 
 	$("#next").on("click", function () {
 		// If the other checkbox is checked, makes sure that its associated text input has been filled out.
 			// For each of the checkboxes, if the checkbox is checked, then pushes its values to the results array.
 			// Otherwise, pushes an empty string to the results array.
-
+			let text = $("#hypothesis").val();
 			// Pushes the text from the textfield underneath the other checkbox
 			results.push(text);
 
@@ -182,7 +176,6 @@ function page2() {
 		// Otherwise...
 		else {
 			$("#taskDetails").animate({opacity: "0"}, "fast"); // Reduces the opacity before going to next page.
-			console.log(results);
 			currentItem = 0; // Sets currentItem to 0 in case we need to use it on another page.
 			setTimeout(function(){
 				updateProgress(0); // Updates the progress bar before going to the next page.
@@ -509,9 +502,14 @@ function endSurvey(){
 	
 	$("#root").html(root_html);
 
+	console.log(images);
+	console.log(training_x);
+	console.log(training_y);
+	console.log(results);
+
 	var data = JSON.stringify({
-	  "x": "demo" + training_x[0] + ", " + training_x[1] + ", " + training_x[2] + ", " + training_x[3],
-	  "y": training_y[0] + ", " + training_y[1] + ", " + training_y[2] + ", " + training_y[3],
+	  "training": training_x[0] + training_y[0] + ", " + training_x[1] + training_y[1]  + ", " + training_x[2] + training_y[2]  + ", " + training_x[3] + training_y[3] ,
+	  "order": images[0] + ", " + images[1] + ", " + images[2] + ", " + images[3] + ", " + images[4] + ", " + images[5] + ", " + images[6] + ", " + images[7],
 	  "results": results[1] + ", " + results[2] + ", " + results[3] + ", " + results[4] + ", " + results[5] + ", " + results[6] + ", " + results[7] + ", " + results[8],
 	  "reason": results[0]
 	});
